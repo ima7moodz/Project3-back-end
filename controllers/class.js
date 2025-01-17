@@ -20,3 +20,16 @@ router.post("/", verifyToken, async (req, res) => {
     res.status(400).json({ error: error.message })
   }
 })
+
+//get class
+router.get("/", async (req, res) => {
+  try {
+    const getClass = await Class.find()
+    res.status(200).json(getClass)
+  } catch (error) {
+    console.error("Error fetching class:", error)
+    res.status(500).json({ error: error.message })
+  }
+})
+
+module.exports = router

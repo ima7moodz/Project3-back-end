@@ -8,6 +8,7 @@ const cors = require("cors")
 const { verifyToken } = require("./middleware/jwtUtils")
 
 const authRouter = require("./controllers/auth")
+const classRouter = require("./controllers/class")
 
 mongoose.connect(process.env.MONGODB_URI)
 mongoose.connection.on("connected", () => {
@@ -19,6 +20,7 @@ app.use(cors({ origin: "http://localhost:5173", credentials: true }))
 
 // Routes go here
 app.use("/auth", authRouter)
+app.use("/class", classRouter)
 
 app.listen(PORT, () => {
   console.log("The express app is ready!", PORT)
