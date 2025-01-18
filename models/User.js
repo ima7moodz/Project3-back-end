@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       enum: ["trainer", "trainee"],
-      required: true,
+
+      default: "regular",
     },
   },
   { timestamps: true }
