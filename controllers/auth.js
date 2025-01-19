@@ -5,8 +5,8 @@ const router = require("express").Router()
 
 router.post("/signup", async (req, res) => {
   try {
-    const { username, password, role } = req.body
-    if (!username || !password || !role)
+    const { username, password } = req.body
+    if (!username || !password)
       return res.status(400).json({ error: "Missing required fields." })
     const userExist = await User.findOne({ username })
     if (userExist)
@@ -15,7 +15,6 @@ router.post("/signup", async (req, res) => {
     const user = await User.create({
       username,
       password: hashedPassword,
-      role,
     })
     const token = signToken(user)
     return res.status(201).json({ message: "User created", token })

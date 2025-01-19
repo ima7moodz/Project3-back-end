@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ["trainer", "trainee"],
 
-      default: "regular",
+      default: "trainee",
     },
   },
   { timestamps: true }
