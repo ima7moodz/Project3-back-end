@@ -32,4 +32,18 @@ router.get("/", async (req, res) => {
   }
 })
 
+//get class By ID
+
+router.get("/:classId", async (req, res) => {
+  try {
+    const showClass = await Class.findById(req.params.classId)
+    if (!showClass) {
+      return res.status(404).json({ error: "Class not found." })
+    }
+    res.status(200).json(showClass)
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+})
+
 module.exports = router
