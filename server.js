@@ -10,6 +10,7 @@ const { verifyToken } = require("./middleware/jwtUtils")
 const authRouter = require("./controllers/auth")
 const userRouter = require("./controllers/user")
 const classRouter = require("./controllers/class")
+const joiningRouter = require("./controllers/joinClass")
 
 mongoose.connect(process.env.MONGODB_URI)
 mongoose.connection.on("connected", () => {
@@ -23,6 +24,7 @@ app.use(cors({ origin: "http://localhost:5173", credentials: true }))
 app.use("/auth", authRouter)
 app.use("/user", verifyToken, userRouter)
 app.use("/class", classRouter)
+app.use("/class/join", joiningRouter)
 
 app.listen(PORT, () => {
   console.log("App run in Port:", PORT)
